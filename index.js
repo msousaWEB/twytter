@@ -5,12 +5,17 @@ const FileStore = require('session-file-store')(session)
 const flash     = require('express-flash')
 
 const app = express()
-
 const conn = require('./db/connection')
 
 //MODELS
 const Twytte = require('./models/Twytte')
 const User = require('./models/User')
+
+//IMPORT ROUTES
+const twytterRoutes = require('./routes/twytterRoutes')
+
+// IMPORT CONTROLLER
+const TwytteController = require('./controllers/TwytteController')
 
 app.engine('handlebars', exphbs.engine())
 app.set('view engine', 'handlebars')
@@ -56,6 +61,11 @@ app.use((req, res, next) => {
     }
     next()
 })
+
+// ROUTES
+app.use('/twytter', twytterRoutes)
+
+app.get('/', TwytteController.showTwytter)
 
 
 // DB CONNECTION
