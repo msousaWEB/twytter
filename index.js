@@ -13,6 +13,7 @@ const User = require('./models/User')
 
 //IMPORT ROUTES
 const twytterRoutes = require('./routes/twytterRoutes')
+const authRoutes = require('./routes/authRoutes')
 
 // IMPORT CONTROLLER
 const TwytteController = require('./controllers/TwytteController')
@@ -64,6 +65,7 @@ app.use((req, res, next) => {
 
 // ROUTES
 app.use('/twytter', twytterRoutes)
+app.use('/', authRoutes)
 
 app.get('/', TwytteController.showTwytter)
 
