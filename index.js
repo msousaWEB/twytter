@@ -8,6 +8,10 @@ const app = express()
 
 const conn = require('./db/connection')
 
+//MODELS
+const Twytte = require('./models/Twytte')
+const User = require('./models/User')
+
 app.engine('handlebars', exphbs.engine())
 app.set('view engine', 'handlebars')
 
@@ -56,6 +60,7 @@ app.use((req, res, next) => {
 
 // DB CONNECTION
 conn
+    // .sync({force: true})
     .sync()
     .then(() => {
         app.listen(3000)
