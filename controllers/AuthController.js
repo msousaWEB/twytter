@@ -95,7 +95,6 @@ module.exports = class AuthController {
 
     static logout(req, res) {
         req.session.destroy()
-        req.flash('success', 'Você saiu!')
         res.redirect('/login')
     }
 }

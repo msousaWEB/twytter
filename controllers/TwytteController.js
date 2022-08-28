@@ -5,4 +5,8 @@ module.exports = class TwytteController {
     static async showTwytter(req, res) {
         res.render('twytter/home')
     }
+
+    static async dashboard(req, res) {
+        res.render('twytter/dashboard')
+    }
 }
