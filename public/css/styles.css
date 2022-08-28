@@ -132,6 +132,32 @@ form input[type='submit']:hover,
     color: white;
 }
 
+/* CREATE / EDIT FORM */
+.twytte-form-container a {
+    color: #8bb7f0;
+}
+
+.twytte-form-container:hover {
+    color: white;
+}
+
+.twytte-form-container h1 {
+    margin-bottom: 1em;
+    margin-top: 1em;
+    color: white;
+    border-left: 4px solid #8bb7f0;
+    padding: 0.3em;
+}
+
+.twytte-form-container form {
+    max-width: 30%;
+    margin-top: 1.5em;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+}
+
+
 
 /* FOOTER */
 

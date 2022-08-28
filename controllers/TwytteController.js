@@ -9,4 +9,8 @@ module.exports = class TwytteController {
     static async dashboard(req, res) {
         res.render('twytter/dashboard')
     }
+
+    static createTwytte(req, res) {
+        res.render('twytter/create')
+    }
 }

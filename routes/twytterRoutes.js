@@ -8,5 +8,6 @@ const checkAuth = require('../helpers/auth').checkAuth
 // CONTROLLER
 router.get('/', TwytteController.showTwytter)
 router.get('/dashboard', checkAuth, TwytteController.dashboard)
+router.get('/add', checkAuth, TwytteController.createTwytte)
 
 module.exports = router
