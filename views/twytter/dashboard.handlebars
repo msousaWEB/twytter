@@ -2,11 +2,20 @@
     <div class="title-container">
         <h2>Dashboard</h2>
         <a href="/twytter/add" class="btn">Escrever um twytte</a>
-        <h3>Meus twyttes</h3>
-        <ul>
-            {{#each twyttes}}
-                <li>{{this.title}}</li>
-            {{/each}}
-        </ul>
     </div>
+    <h3>Meus twyttes</h3>
+    <ul>
+        {{#each twyttes}}
+            <li>
+                <span class="label"># {{this.title}}</span>
+                <span class="actions">
+                    <a href="/" class="btn">Editar</a>
+                    <form action="/">
+                        <input type="hidden" name="id" value="{{this.id}}">
+                        <input type="submit" value="Excluir" class="btn">
+                    </form>
+                </span>
+            </li>
+        {{/each}}
+    </ul>
 </div>
