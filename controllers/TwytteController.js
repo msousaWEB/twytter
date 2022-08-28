@@ -7,7 +7,22 @@ module.exports = class TwytteController {
     }
 
     static async dashboard(req, res) {
-        res.render('twytter/dashboard')
+        const userId = req.session.userid
+
+        const user = await User.findOne({
+            where: {id: userId},
+            include: Twytte,
+            plain: true,
+        });
+
+        //checar se o user existe
+        if(!user) {
+            res.redirect('/login')
+        }
+
+        const twyttes = user.Twyttes.map((result) => result.dataValues)
+
+        res.render('twytter/dashboard', {twyttes})
     }
 
     static async addTwytte(req, res) {
