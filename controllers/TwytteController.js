@@ -10,6 +10,24 @@ module.exports = class TwytteController {
         res.render('twytter/dashboard')
     }
 
+    static async addTwytte(req, res) {
+        const twytte = {
+            title: req.body.title,
+            UserId: req.session.userid
+        }
+
+        try {
+            await Twytte.create(twytte)
+            req.flash('success', 'Seu twytte foi enviado!')
+
+            req.session.save(() => {
+                res.redirect('/twytter/dashboard')
+            })
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
     static createTwytte(req, res) {
         res.render('twytter/create')
     }
