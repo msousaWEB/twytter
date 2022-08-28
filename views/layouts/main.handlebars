@@ -25,6 +25,21 @@
     
     <div class="container">
         {{!-- MENSAGENS --}}
+        {{#if messages.error}}
+            <div class="message-error">
+                {{messages.error}}
+            </div>
+        {{else}}   
+
+        {{#if messages.success}}
+            <div class="message-success">
+                {{messages.success}}
+            </div>
+        {{/if}}
+
+        {{/if}}
+
+        {{!-- CORPO DO SITE --}}
         {{{body}}}
     </div>
 
