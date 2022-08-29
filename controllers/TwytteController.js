@@ -67,4 +67,12 @@ module.exports = class TwytteController {
             console.log(error)
         }
     }
+
+    static async updateTwytte(req, res) {
+        const id = req.params.id
+
+        const twytte = await Twytte.findOne({where: {id: id}, raw: true})
+
+        res.render('twytter/edit', {twytte})
+    }
 }
