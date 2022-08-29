@@ -21,8 +21,13 @@ module.exports = class TwytteController {
         }
 
         const twyttes = user.Twyttes.map((result) => result.dataValues)
+        let emptyTwyttes = false
 
-        res.render('twytter/dashboard', {twyttes})
+        if(twyttes.length === 0) {
+            emptyTwyttes = true
+        }
+
+        res.render('twytter/dashboard', {twyttes, emptyTwyttes})
     }
 
     static async addTwytte(req, res) {
