@@ -46,4 +46,20 @@ module.exports = class TwytteController {
     static createTwytte(req, res) {
         res.render('twytter/create')
     }
+
+    static async delTwytte(req, res) {
+        const id = req.body.id
+        const UserId = req.session.userid
+
+        try {
+            await Twytte.destroy({where: {id:id, UserId: UserId}})
+            req.flash('success', 'Seu twytte foi removido!')
+
+            req.session.save(() => {
+                res.redirect('/twytter/dashboard')
+            })
+        } catch (error) {
+            console.log(error)
+        }
+    }
 }
