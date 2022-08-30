@@ -1,14 +1,28 @@
 const Twytte = require('../models/Twytte')
 const User  = require('../models/User')
+const {Op}  = require('sequelize')
 
 module.exports = class TwytteController {
     static async showTwytter(req, res) {
+        let search = ''
+
+        if(req.query.search) {
+            search = req.query.search 
+        }
+
         const twytteData = await Twytte.findAll({
             include: User,
+            where: {
+                title: { [Op.like]: `%${search}%`},
+            },
         })
         const twyttes = twytteData.map((result) => result.get({plain: true}))
 
-        res.render('twytter/home', {twyttes})
+        let twyttesQtd = twyttes.length
+        if(twyttesQtd === 0){
+            twyttesQtd = false
+        }
+        res.render('twytter/home', {twyttes, search, twyttesQtd})
     }
 
     static async dashboard(req, res) {
