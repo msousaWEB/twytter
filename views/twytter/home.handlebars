@@ -1,1 +1,13 @@
-<h1>todos os twyttes</h1>
+<div class="home-header">
+    <h1>Todos os twyttes</h1>
+</div>
+<div class="twyttes-container">
+    {{#each twyttes}}
+        <figure>
+            <blockquote>
+                "{{this.title}}"
+            </blockquote>
+            <figcaption>by <span>{{this.User.name}}</span></figcaption>
+        </figure>
+    {{/each}}
+</div>

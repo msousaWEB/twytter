@@ -3,7 +3,12 @@ const User  = require('../models/User')
 
 module.exports = class TwytteController {
     static async showTwytter(req, res) {
-        res.render('twytter/home')
+        const twytteData = await Twytte.findAll({
+            include: User,
+        })
+        const twyttes = twytteData.map((result) => result.get({plain: true}))
+
+        res.render('twytter/home', {twyttes})
     }
 
     static async dashboard(req, res) {
