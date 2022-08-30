@@ -75,4 +75,22 @@ module.exports = class TwytteController {
 
         res.render('twytter/edit', {twytte})
     }
+
+    static async saveTwytte(req, res) {
+        const id = req.body.id
+        const twytte = {
+            title: req.body.title,
+        }
+
+        try {
+            await Twytte.update(twytte, {where: {id:id}})
+            req.flash('success', 'Seu twytte foi atualizado!')
+
+            req.session.save(() => {
+                res.redirect('/twytter/dashboard')
+            })
+        } catch (error) {
+            console.log(error)
+        }
+    }
 }
