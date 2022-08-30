@@ -1,6 +1,6 @@
 const Twytte = require('../models/Twytte')
 const User  = require('../models/User')
-const {Op}  = require('sequelize')
+const {Op, or}  = require('sequelize')
 
 module.exports = class TwytteController {
     static async showTwytter(req, res) {
@@ -10,11 +10,22 @@ module.exports = class TwytteController {
             search = req.query.search 
         }
 
+        let order = 'DESC'
+
+        if (req.query.order === 'old') {
+            order = 'ASC'
+        } else {
+            order = 'DESC'
+        }
+
+        console.log(order);
+
         const twytteData = await Twytte.findAll({
             include: User,
             where: {
                 title: { [Op.like]: `%${search}%`},
-            },
+            },  
+            order: [['createdAt', order]]
         })
         const twyttes = twytteData.map((result) => result.get({plain: true}))
 
